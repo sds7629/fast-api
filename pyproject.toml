@@ -1,13 +1,15 @@
 [tool.poetry]
-name = "sample"
+name = "fast-api"
 version = "0.1.0"
 description = ""
-authors = ["jinwoo <sds7629>"]
+authors = ["sds7629 <sds7629@naver.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-django = "^4.2.4"
+python = "^3.10"
+fastapi = "^0.105.0"
+uvicorn = {extras = ["standart"], version = "^0.24.0.post1"}
+sqlalchemy = "^2.0.23"
 
 
 [build-system]
