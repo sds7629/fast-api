@@ -1,26 +1,32 @@
+from pydantic import BaseModel, EmailStr
 from typing import Optional, List
-from uuid import UUID, uuid4
-from pydantic import BaseModel
-from enum import Enum
-
-
-# 유저 성별
-class Gender(str, Enum):
-    male = "M"
-    female = "F"
-
-
-class Role(str, Enum):
-    admin = "admin"
-    user = "user"
-    student = "student"
+from models.events import Event
 
 
 class User(BaseModel):
-    # None값이 들어올 수 있음
-    id: Optional[UUID] = uuid4()
-    first_name: str
-    last_name: str
-    middle_name: Optional[str]
-    gender: Gender
-    roles: List[Role]
+    email: EmailStr
+    password: str
+    events: Optional[List[Event]]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "fastapi@packt.com",
+                "password": "strong",
+                "events": [],
+            }
+        }
+
+
+class UserSignIn(BaseModel):
+    email: EmailStr
+    password: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "fastapi@packt.com",
+                "password": "strong",
+                "events": [],
+            }
+        }
