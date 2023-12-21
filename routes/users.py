@@ -3,7 +3,9 @@ from models.users import User, UserSignIn
 
 user_router = APIRouter(tags=["User"])
 
-users = {}
+users = {
+    "sds7629@naver.com": User(email="sds7629@naver.com", password="1234", events=[])
+}
 
 
 @user_router.post("/signup")
