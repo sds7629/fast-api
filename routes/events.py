@@ -37,7 +37,7 @@ async def retrieve_event(id: int, session=Depends(get_session)) -> Event:
     )
 
 
-@event_router.put("/edit/{id}", response_model=Event)
+@event_router.patch("/edit/{id}", response_model=Event)
 async def update_event(
     id: int, new_data: EventUpdate, session=Depends(get_session)
 ) -> Event:
