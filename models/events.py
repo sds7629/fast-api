@@ -2,6 +2,7 @@ from sqlmodel import JSON, SQLModel, Field, Column
 from typing import Optional, List
 
 
+# GET, POST, DELETE
 class Event(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     title: str
@@ -23,6 +24,7 @@ class Event(SQLModel, table=True):
         }
 
 
+# PUT
 class EventUpdate(SQLModel):
     title: Optional[str] = None
     image: Optional[str] = None
