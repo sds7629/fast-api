@@ -33,7 +33,7 @@ class EventUpdate(SQLModel):
     location: Optional[str] = None
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "title": "FastAPI Book launch",
                 "image": "https://linktomyimage.com/image.png",

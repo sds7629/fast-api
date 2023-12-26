@@ -1,6 +1,25 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 from models.events import Event
+from sqlalchemy import Column, Integer, TEXT, VARCHAR, ForeignKey
+from db.connection import Base
+
+# class EmptyStringValidator(Validator):
+#     """
+#     Validate whether a string is empty.
+#     """
+#     def __call__(self, value: str):
+#         if not value:
+#             raise ValidationError(f"Value can not be empty")
+
+
+class User(Base):
+    __tablename__ = "USER"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    email = Column(VARCHAR(100), nullable=False)
+    password = Column(VARCHAR(20), nullable=False)
+    events = Column(Integer, ForeignKey("EVENT"))
 
 
 class User(BaseModel):
@@ -9,7 +28,7 @@ class User(BaseModel):
     events: Optional[List[Event]]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "email": "fastapi@packt.com",
                 "password": "strong",
@@ -23,7 +42,7 @@ class UserSignIn(BaseModel):
     password: str
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "email": "fastapi@packt.com",
                 "password": "strong",

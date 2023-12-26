@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from models.users import User, UserSignIn
+from typing import Optional
 
 user_router = APIRouter(tags=["User"])
 
